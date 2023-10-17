@@ -1,0 +1,66 @@
+.root {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.playerItems {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  min-width: 300px;
+}
+
+.title {
+  padding: 15px 20px;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.label {
+  margin: 0 0 15px;
+}
+
+.container {
+  padding: 0 20px 20px;
+  overflow-y: auto;
+}
+
+.items {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.item {
+  width: 130px;
+  height: 130px;
+}
+
+.item {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0;
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.item:hover {
+  border-color: #646cff;
+}
+
+.item:focus,
+.item:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

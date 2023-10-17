@@ -1,35 +1,77 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, MouseEvent, useCallback } from "react";
+import { itemsMap, itemsList, type ItemId } from "./constants";
+import styles from "./App.module.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [playerItems, setPlayerItems] = useState<
+    Record<string, { quantity: number; score: number; bonusPoints: number }>
+  >({});
+
+  const handleItemClick = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      const id = event.currentTarget.dataset.id as ItemId;
+      setPlayerItems((prev) => {
+        const nextQuantity = (prev[id]?.quantity || 0) + 1;
+        const { bonus, unitPoints } = itemsMap[id];
+        let nextScore = nextQuantity * unitPoints;
+        let bonusPoints = 0;
+
+        if (bonus !== null && nextQuantity >= bonus.count) {
+          const remainder = nextQuantity % bonus.count;
+          nextScore =
+            remainder * unitPoints +
+            ((nextQuantity - remainder) / bonus.count) * bonus.points;
+
+          bonusPoints = nextScore - nextQuantity * unitPoints;
+        }
+
+        return {
+          ...prev,
+          [id]: {
+            quantity: nextQuantity,
+            score: nextScore,
+            bonusPoints,
+          },
+        };
+      });
+    },
+    [setPlayerItems]
+  );
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <main className={styles.root}>
+      <section className={styles.points}>
+        <h2 className={styles.title}>Kahoot! Points</h2>
+        <div className={styles.container}>
+          <h3 className={styles.label}>Items</h3>
+          <div className={styles.items}>
+            {itemsList.map((itemId) => (
+              <button
+                key={itemId}
+                className={styles.item}
+                data-id={itemId}
+                onClick={handleItemClick}
+              >
+                {itemsMap[itemId].item}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className={styles.playerItems}>
+        <h2 className={styles.title}>Player Items</h2>
+        <div>
+          {Object.keys(playerItems).map((id) => (
+            <div key={id}>{`Item: ${
+              itemsMap[id as keyof typeof itemsMap].item
+            }, quantity: ${playerItems[id].quantity}, score: ${
+              playerItems[id].score
+            }, bonusPerItem: ${playerItems[id].bonusPoints}`}</div>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+};
 
-export default App
+export default App;
