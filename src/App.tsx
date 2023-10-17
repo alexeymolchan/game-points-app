@@ -17,7 +17,7 @@ const App: FC = () => {
   const [playerItems, setPlayerItems] =
     useState<Record<string, PlayerItem>>(INITIAL_STATE);
 
-  const resetGame = () => setPlayerItems(INITIAL_STATE);
+  const resetPoints = () => setPlayerItems(INITIAL_STATE);
 
   const handleItemClick = (event: MouseEvent<HTMLButtonElement>) => {
     const id = event.currentTarget.dataset.itemId as ItemId;
@@ -60,7 +60,7 @@ const App: FC = () => {
         <PlayerItemsTable data={playerItemsData} />
         <Summary
           {...getTotalScoreAndBonuses(playerItemsData)}
-          onButtonClick={resetGame}
+          onButtonClick={resetPoints}
         />
       </Section>
     </main>
