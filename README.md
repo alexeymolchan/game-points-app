@@ -8,9 +8,7 @@ https://alexeymolchan.github.io/game-points-app/
 
 - NodeJS v18.x
 - NPM is required.
-- Clone the repo, cd into it and run:
-
-`npm install`
+- Clone the repo, cd into it and run: `npm install`
 
 ## Build and run
 
@@ -26,6 +24,6 @@ To build a production version: `npm run build`. This will build a production bun
 
 ## Testing
 
-Vitest is used for unit testing. To perform a single run without a watch mode `npm run test`.
+Vitest and React Testing Library are used for testing. To perform a single run without a watch mode `npm run test`.
 
 If you would like to start test in watch mode use `npm run test:watch`.
