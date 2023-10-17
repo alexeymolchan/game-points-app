@@ -1,5 +1,9 @@
 # Game Points App
 
+## This app is available on github pages:
+
+https://alexeymolchan.github.io/game-points-app/
+
 ## Prerequisites:
 
 NodeJS v18.x
