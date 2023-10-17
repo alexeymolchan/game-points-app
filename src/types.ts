@@ -9,3 +9,9 @@ export type Bonus = {
   count: number;
   points: number;
 } | null;
+
+export type PlayerItem = Pick<Item, "id" | "name"> & {
+  quantity: number;
+  score: number;
+  bonusPoints: number;
+};
