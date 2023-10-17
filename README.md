@@ -20,7 +20,7 @@ This will also automatically launch default browser (if it wasn't running) and o
 
 #### Build a production version
 
-To build a production version: `npm run build`. This will build a production bundle;
+To build a production version: `npm run build`. This will build a production bundle in a `/dist` folder
 
 ## Testing
 
