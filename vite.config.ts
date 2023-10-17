@@ -10,6 +10,8 @@ export default defineConfig({
     environment: "jsdom",
     globals: true,
     setupFiles: "./tests/setup",
+    resolveSnapshotPath: (testPath, snapExtension) =>
+      `${testPath}${snapExtension}`,
   },
   server: {
     open: true,
