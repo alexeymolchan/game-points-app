@@ -7,13 +7,17 @@ import {
   getItemScoreAndBonusFromQuantity,
   getTotalScoreAndBonuses,
 } from "./utils";
-import { itemsMap, type ItemId } from "./constants";
-import { PlayerItem } from "./types";
+import { type ItemId } from "./constants";
+import { ItemsMap, PlayerItem } from "./types";
 import styles from "./App.module.css";
 
 const INITIAL_STATE = {};
 
-const App: FC = () => {
+type AppProps = {
+  itemsConfig: ItemsMap;
+};
+
+const App: FC<AppProps> = ({ itemsConfig }) => {
   const [playerItems, setPlayerItems] =
     useState<Record<string, PlayerItem>>(INITIAL_STATE);
 
@@ -23,7 +27,7 @@ const App: FC = () => {
     const id = event.currentTarget.dataset.itemId as ItemId;
     setPlayerItems((prev) => {
       const nextQuantity = (prev[id]?.quantity || 0) + 1;
-      const { bonus, unitPoints, name } = itemsMap[id];
+      const { bonus, unitPoints, name } = itemsConfig[id];
       const { score, bonusPoints } = getItemScoreAndBonusFromQuantity(
         nextQuantity,
         unitPoints,
@@ -51,7 +55,7 @@ const App: FC = () => {
         <div className={styles.container}>
           <h3 className={styles.label}>Items</h3>
           <ItemsList
-            items={Object.values(itemsMap)}
+            items={Object.values(itemsConfig)}
             onItemClick={handleItemClick}
           />
         </div>

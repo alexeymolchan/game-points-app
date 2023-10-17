@@ -1,4 +1,4 @@
-import { Item } from "./types";
+import { ItemsMap } from "./types";
 
 export const itemsMap = {
   "1": {
@@ -31,6 +31,6 @@ export const itemsMap = {
     unitPoints: 15,
     bonus: null,
   },
-} satisfies Record<string, Item>;
+} satisfies ItemsMap;
 
 export type ItemId = keyof typeof itemsMap;
