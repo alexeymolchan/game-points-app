@@ -6,9 +6,9 @@ https://alexeymolchan.github.io/game-points-app/
 
 ## Prerequisites:
 
-NodeJS v18.x
-NPM is required.
-Clone the repo, cd into it and run:
+- NodeJS v18.x
+- NPM is required.
+- Clone the repo, cd into it and run:
 
 `npm install`
 
