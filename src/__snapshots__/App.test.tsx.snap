@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`App > add items, calculates total and bonuses 1`] = `"Bonuses 0"`;
+
+exports[`App > add items, calculates total and bonuses 2`] = `"Total 30"`;
+
+exports[`App > add items, calculates total and bonuses 3`] = `"Bonuses 0"`;
+
+exports[`App > add items, calculates total and bonuses 4`] = `"Total 80"`;
+
+exports[`App > add items, calculates total and bonuses 5`] = `"Bonuses 30"`;
+
+exports[`App > add items, calculates total and bonuses 6`] = `"Total 140"`;
+
+exports[`App > add items, calculates total and bonuses 7`] = `"Bonuses 80"`;
+
+exports[`App > add items, calculates total and bonuses 8`] = `"Total 290"`;
+
+exports[`App > should successfully reset player points 1`] = `"Bonuses 50"`;
+
+exports[`App > should successfully reset player points 2`] = `"Total 200"`;

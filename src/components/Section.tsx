@@ -5,6 +5,7 @@ type SectionProps = {
   title: string;
   className?: string;
   children?: ReactNode;
+  testId?: string;
 };
 
 const Section: FC<SectionProps> = ({ children, className, title }) => (

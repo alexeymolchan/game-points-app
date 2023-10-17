@@ -24,7 +24,7 @@ const App: FC<AppProps> = ({ itemsConfig }) => {
   const resetPoints = () => setPlayerItems(INITIAL_STATE);
 
   const handleItemClick = (event: MouseEvent<HTMLButtonElement>) => {
-    const id = event.currentTarget.dataset.itemId as ItemId;
+    const id = event.currentTarget.dataset.id as ItemId;
     setPlayerItems((prev) => {
       const nextQuantity = (prev[id]?.quantity || 0) + 1;
       const { bonus, unitPoints, name } = itemsConfig[id];
@@ -61,7 +61,7 @@ const App: FC<AppProps> = ({ itemsConfig }) => {
         </div>
       </Section>
       <Section className={styles.playerItems} title="Player Items">
-        <PlayerItemsTable data={playerItemsData} />
+        <PlayerItemsTable data={Object.values(playerItems)} />
         <Summary
           {...getTotalScoreAndBonuses(playerItemsData)}
           onButtonClick={resetPoints}

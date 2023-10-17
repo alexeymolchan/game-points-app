@@ -13,8 +13,9 @@ const ItemsList: FC<ItemsListProps> = ({ items, onItemClick }) => {
       {items.map(({ id, name }) => (
         <button
           key={id}
+          data-testid={`item-button-${id}`}
           className={styles.item}
-          data-item-id={id}
+          data-id={id}
           onClick={onItemClick}
           aria-label={`Points Item: ${name}`}
         >
