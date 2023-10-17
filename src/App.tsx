@@ -1,18 +1,30 @@
-import { useState, MouseEvent, useCallback } from "react";
-import { itemsMap, itemsList, type ItemId } from "./constants";
+import { useState, MouseEvent, useCallback, FC } from "react";
+import Section from "./components/Section";
+import ItemsList from "./components/ItemsList";
+import PlayerItemsTable from "./components/PlayerItemsTable";
+import { itemsMap, type ItemId } from "./constants";
+import { Item } from "./types";
 import styles from "./App.module.css";
+import Summary from "./components/Summary";
 
-const App = () => {
+const App: FC = () => {
   const [playerItems, setPlayerItems] = useState<
-    Record<string, { quantity: number; score: number; bonusPoints: number }>
+    Record<
+      string,
+      Pick<Item, "name" | "id"> & {
+        quantity: number;
+        score: number;
+        bonusPoints: number;
+      }
+    >
   >({});
 
   const handleItemClick = useCallback(
     (event: MouseEvent<HTMLButtonElement>) => {
-      const id = event.currentTarget.dataset.id as ItemId;
+      const id = event.currentTarget.dataset.itemId as ItemId;
       setPlayerItems((prev) => {
         const nextQuantity = (prev[id]?.quantity || 0) + 1;
-        const { bonus, unitPoints } = itemsMap[id];
+        const { bonus, unitPoints, name } = itemsMap[id];
         let nextScore = nextQuantity * unitPoints;
         let bonusPoints = 0;
 
@@ -28,9 +40,11 @@ const App = () => {
         return {
           ...prev,
           [id]: {
+            id,
             quantity: nextQuantity,
             score: nextScore,
             bonusPoints,
+            name,
           },
         };
       });
@@ -38,38 +52,32 @@ const App = () => {
     [setPlayerItems]
   );
 
+  const resetGame = () => setPlayerItems({});
+  const playerItemsData = Object.values(playerItems);
+
+  const { total, bonuses } = playerItemsData.reduce(
+    ({ bonuses, total }, { bonusPoints, score }) => ({
+      bonuses: bonuses + bonusPoints,
+      total: total + score,
+    }),
+    { bonuses: 0, total: 0 }
+  );
+
   return (
     <main className={styles.root}>
-      <section className={styles.points}>
-        <h2 className={styles.title}>Kahoot! Points</h2>
+      <Section className={styles.points} title="Kahoot! Points">
         <div className={styles.container}>
           <h3 className={styles.label}>Items</h3>
-          <div className={styles.items}>
-            {itemsList.map((itemId) => (
-              <button
-                key={itemId}
-                className={styles.item}
-                data-id={itemId}
-                onClick={handleItemClick}
-              >
-                {itemsMap[itemId].item}
-              </button>
-            ))}
-          </div>
+          <ItemsList
+            items={Object.values(itemsMap)}
+            onItemClick={handleItemClick}
+          />
         </div>
-      </section>
-      <section className={styles.playerItems}>
-        <h2 className={styles.title}>Player Items</h2>
-        <div>
-          {Object.keys(playerItems).map((id) => (
-            <div key={id}>{`Item: ${
-              itemsMap[id as keyof typeof itemsMap].item
-            }, quantity: ${playerItems[id].quantity}, score: ${
-              playerItems[id].score
-            }, bonusPerItem: ${playerItems[id].bonusPoints}`}</div>
-          ))}
-        </div>
-      </section>
+      </Section>
+      <Section className={styles.playerItems} title="Player Items">
+        <PlayerItemsTable data={playerItemsData} />
+        <Summary bonuses={bonuses} total={total} onButtonClick={resetGame} />
+      </Section>
     </main>
   );
 };

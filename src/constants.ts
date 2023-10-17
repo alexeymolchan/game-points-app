@@ -3,7 +3,7 @@ import { Item } from "./types";
 export const itemsMap = {
   "1": {
     id: "1",
-    item: "A",
+    name: "A",
     unitPoints: 50,
     bonus: {
       count: 3,
@@ -12,7 +12,7 @@ export const itemsMap = {
   },
   "2": {
     id: "2",
-    item: "B",
+    name: "B",
     unitPoints: 30,
     bonus: {
       count: 2,
@@ -21,18 +21,16 @@ export const itemsMap = {
   },
   "3": {
     id: "3",
-    item: "C",
+    name: "C",
     unitPoints: 20,
     bonus: null,
   },
   "4": {
     id: "4",
-    item: "D",
+    name: "D",
     unitPoints: 15,
     bonus: null,
   },
 } satisfies Record<string, Item>;
 
 export type ItemId = keyof typeof itemsMap;
-
-export const itemsList = Object.keys(itemsMap) as ItemId[];

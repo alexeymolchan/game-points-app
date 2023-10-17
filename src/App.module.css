@@ -5,22 +5,13 @@
 }
 
 .points {
-  display: flex;
-  flex-direction: column;
   flex: 1;
+  border-right: 1px solid #fff;
 }
 
 .playerItems {
-  display: flex;
-  flex-direction: column;
   width: 30%;
   min-width: 300px;
-}
-
-.title {
-  padding: 15px 20px;
-  box-sizing: border-box;
-  margin: 0;
 }
 
 .label {
@@ -28,8 +19,9 @@
 }
 
 .container {
-  padding: 0 20px 20px;
+  padding: 20px;
   overflow-y: auto;
+  flex: 1;
 }
 
 .items {
@@ -54,13 +46,23 @@
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+
+  &:hover {
+    border-color: #646cff;
+  }
+
+  &:focus,
+  :focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
 }
 
-.item:hover {
-  border-color: #646cff;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: auto;
 }
 
-.item:focus,
-.item:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.total {
+  display: flex;
 }

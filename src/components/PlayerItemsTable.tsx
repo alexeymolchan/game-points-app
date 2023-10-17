@@ -1,0 +1,34 @@
+import { FC } from "react";
+import styles from "./PlayerItemsTable.module.css";
+
+type PlayerItemsTableProps = {
+  data: { id: string; name: string; quantity: number; score: number }[];
+  className?: string;
+};
+
+const PlayerItemsTable: FC<PlayerItemsTableProps> = ({ data, className }) => (
+  <div className={`${styles.root} ${className}`}>
+    <table className={styles.table}>
+      <thead>
+        <tr className={`${styles.row} ${styles.sticky}`}>
+          <th className={styles.col}>Item</th>
+          <th className={styles.col}>Qty</th>
+          <th className={styles.col}>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map(({ id, name, quantity, score }) => (
+          <tr key={id} className={styles.row}>
+            <td className={styles.col}>
+              <div className={styles.name}>{name}</div>
+            </td>
+            <td className={styles.col}>{quantity}</td>
+            <td className={styles.col}>{score}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+);
+
+export default PlayerItemsTable;

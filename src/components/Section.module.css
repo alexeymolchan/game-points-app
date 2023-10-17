@@ -1,0 +1,11 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  padding: 15px 20px;
+  box-sizing: border-box;
+  margin: 0;
+  border-bottom: var(--divider);
+}

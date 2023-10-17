@@ -1,0 +1,39 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+  border-top: var(--divider);
+}
+
+.item {
+  display: flex;
+  padding: 10px;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.item:first-child {
+  border-bottom: var(--divider);
+}
+
+.total {
+  text-align: left;
+}
+
+.button {
+  cursor: pointer;
+  background-color: #716eef;
+  border: none;
+  box-shadow: none;
+  transition: background-color 0.3s ease-in-out;
+  width: 120px;
+  height: 40px;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.button:hover {
+  background-color: #4b48cb;
+}
