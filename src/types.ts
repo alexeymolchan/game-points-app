@@ -15,3 +15,5 @@ export type PlayerItem = Pick<Item, "id" | "name"> & {
   score: number;
   bonusPoints: number;
 };
+
+export type ItemsMap = Record<string, Item>;
