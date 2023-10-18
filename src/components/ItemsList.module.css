@@ -17,7 +17,7 @@
   line-height: 40px;
   font-weight: 500;
   font-family: inherit;
-  color: inherit;
+  color: var(--text-color);
   background-color: var(--item-bg-color);
   cursor: pointer;
   transition: border-color 0.25s;

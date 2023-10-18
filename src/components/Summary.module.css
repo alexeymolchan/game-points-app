@@ -32,6 +32,9 @@
   height: 40px;
   border-radius: 5px;
   align-self: center;
+  font-size: 14px;
+  line-height: 16px;
+  color: var(--text-color);
 }
 
 .button:hover {
